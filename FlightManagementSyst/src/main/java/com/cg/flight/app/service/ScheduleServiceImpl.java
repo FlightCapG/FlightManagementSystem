@@ -1,6 +1,8 @@
 package com.cg.flight.app.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cg.flight.app.entity.Schedule;
 import com.cg.flight.app.repository.ScheduleRepository;
 
 @Service
@@ -13,3 +15,4 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return scheduleRepository.save(s);
 	}
 }
+
