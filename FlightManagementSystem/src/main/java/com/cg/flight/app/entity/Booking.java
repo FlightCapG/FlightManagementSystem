@@ -19,35 +19,33 @@ import lombok.NoArgsConstructor;
 @Data
 public class Booking {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int bookingId;
+              @Id
+              @GeneratedValue(strategy = GenerationType.AUTO)
+              private int bookingId;
 
-	private Date bookingDate;
+              // private String bookingDate;
 
-	private double ticketCost;
+              private double ticketCost;
 
-	private int noOfPassengers;
+              private int noOfPassengers;
 
-	private String destination;
+              private String destination;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pnrId",referencedColumnName = "pnrId")
-	private Passenger passenger;
+              @OneToOne(cascade = CascadeType.ALL)
+              //@JoinColumn(name = "pnrId", referencedColumnName = "pnrId")
+              private Passenger passenger;
 
-	@JoinColumn(name = "flightId",referencedColumnName = "flightId")
-	@OneToOne(cascade = CascadeType.ALL)
-	private Flight flight;
+              @JoinColumn(name = "flightId", referencedColumnName = "flightId")
+              @OneToOne(cascade = CascadeType.ALL)
+              private Flight flight;
 
-	public Booking(double ticketCost, int noOfPassengers, String destination) {
-		super();
+              public Booking(double ticketCost, int noOfPassengers, String destination) {
+                             super();
 
-		
+                             this.ticketCost = ticketCost;
 
-		this.ticketCost = ticketCost;
-
-		this.noOfPassengers = noOfPassengers;
-		this.destination = destination;
-	}
+                             this.noOfPassengers = noOfPassengers;
+                             this.destination = destination;
+              }
 
 }
