@@ -28,92 +28,93 @@ import com.cg.flight.app.util.BookingDTOConvertor;
 @RequestMapping("/booking")
 public class BookingController {
 
-	private final Logger logger = LoggerFactory.getLogger(BookingController.class);
+              private final Logger logger = LoggerFactory.getLogger(BookingController.class);
 
-	@Autowired
-	private IBookingService bookingService;
+              @Autowired
+              private IBookingService bookingService;
 
-	@Autowired
-	private BookingDTOConvertor bookingDTOConvertor;
+              @Autowired
+              private BookingDTOConvertor bookingDTOConvertor;
 
-	public BookingController() {
-		logger.info("---Booking Controller Called --");
-		logger.warn("---Booking Controller Called --");
+              public BookingController() {
+                             logger.info("---Booking Controller Called --");
+                             logger.warn("---Booking Controller Called --");
 
-		System.err.println("Welcome to Flight Management app");
-	}
+                             System.err.println("Welcome to Flight Management app");
+              }
 
-	//List<Booking> bookingList;
+              //List<Booking> bookingList;
 
-	@PostMapping("/register")
-	public ResponseEntity<BookingResponseDTO> addBooking(@RequestBody Booking booking) throws Exception {
-		Booking savedBooking = bookingService.addBooking(booking);
-		BookingResponseDTO dto = bookingDTOConvertor.getBookingResponseDTO(savedBooking);
-		return new ResponseEntity<BookingResponseDTO>(dto, HttpStatus.OK);
-	}
-	// EndPoint
-	// localhost:2020/booking/register
+              @PostMapping("/register")
+              public ResponseEntity<BookingResponseDTO> addBooking(@RequestBody Booking booking) throws Exception {
+                             Booking savedBooking = bookingService.addBooking(booking);
+                             BookingResponseDTO dto = bookingDTOConvertor.getBookingResponseDTO(savedBooking);
+                             return new ResponseEntity<BookingResponseDTO>(dto, HttpStatus.OK);
+              }
+              // EndPoint
+              // localhost:2020/booking/register
 
-	@PutMapping("/modify/{bookingId}")
-	public ResponseEntity<BookingResponseDTO> modifyBooking(@PathVariable int bookingId) {
-		Booking modifiedBookings = bookingService.modifyBooking(bookingId);
-		if (modifiedBookings != null) {
-			BookingResponseDTO dto = bookingDTOConvertor.getBookingResponseDTO(modifiedBookings);
-			return new ResponseEntity<BookingResponseDTO>(dto, HttpStatus.OK);
+              @PutMapping("/modify/{bookingId}")
+              public ResponseEntity<BookingResponseDTO> modifyBooking(@PathVariable int bookingId) {
+                             Booking modifiedBookings = bookingService.modifyBooking(bookingId);
+                             if (modifiedBookings != null) {
+                                           BookingResponseDTO dto = bookingDTOConvertor.getBookingResponseDTO(modifiedBookings);
+                                           return new ResponseEntity<BookingResponseDTO>(dto, HttpStatus.OK);
 
-		}
-		return null;
-	}
-	// EndPoint
-	// localhost:2020/booking/modify/
+                             }
+                             return null;
+              }
+              // EndPoint
+              // localhost:2020/booking/modify/
 
-	@GetMapping("/viewBooking/{bookingId}")
-	public ResponseEntity<BookingResponseDTO> viewBookingById(@PathVariable int bookingId) {
-		Booking allBookings = bookingService.viewBookingById(bookingId);
-		BookingResponseDTO dto = bookingDTOConvertor.getBookingResponseDTO(allBookings);
-		return new ResponseEntity<BookingResponseDTO>(dto, HttpStatus.OK);
+              @GetMapping("/viewBooking/{bookingId}")
+              public ResponseEntity<BookingResponseDTO> viewBookingById(@PathVariable int bookingId) {
+                             Booking allBookings = bookingService.viewBookingById(bookingId);
+                             BookingResponseDTO dto = bookingDTOConvertor.getBookingResponseDTO(allBookings);
+                             return new ResponseEntity<BookingResponseDTO>(dto, HttpStatus.OK);
 
-	}
-	// EndPoint
-	// localhost:2020/booking/viewBooking/
+              }
+              // EndPoint
+              // localhost:2020/booking/viewBooking/
 
-	@GetMapping("/bookingsByDestination/{destination}")
-	public ResponseEntity<List<BookingDTO>> viewBookingByDestination(@PathVariable String destination)throws Exception {
-		List<Booking> allBookings = bookingService.viewBookingByDestination(destination);
-		List<BookingDTO> allBookingDTO = new ArrayList<>();
+              @GetMapping("/bookingsByDestination/{destination}")
+              public ResponseEntity<List<BookingDTO>> viewBookingByDestination(@PathVariable String destination)throws Exception {
+                             List<Booking> allBookings = bookingService.viewBookingByDestination(destination);
+                             List<BookingDTO> allBookingDTO = new ArrayList<>();
 
-		for (Booking booking : allBookings) {
-			if (booking.getDestination().equals(destination)) {
-				allBookingDTO.add(bookingDTOConvertor.GetBookingDTO(booking));
-				return new ResponseEntity<List<BookingDTO>>(allBookingDTO, HttpStatus.OK);
+                             for (Booking booking : allBookings) {
+                                           if (booking.getDestination().equals(destination)) {
+                                                     allBookingDTO.add(bookingDTOConvertor.GetBookingDTO(booking));
+                                                          return new ResponseEntity<List<BookingDTO>>(allBookingDTO, HttpStatus.OK);
 
-			}
-		}
-		return null;
-	}
-	// EndPoint
-	// localhost:2020/booking/bookingsByDestination/
+                                           }
+                             }
+                             return null;
+              }
+              // EndPoint
+              // localhost:2020/booking/bookingsByDestination/
 
-	@GetMapping("/view")
-	public ResponseEntity<List<BookingDTO>> viewBooking() {
-		List<Booking> allBookings = bookingService.viewBooking();
-		List<BookingDTO> allBookingDTO = new ArrayList<>();
-		for (Booking booking : allBookings) {
+              @GetMapping("/view")
+              public ResponseEntity<List<BookingDTO>> viewBooking() {
+                             List<Booking> allBookings = bookingService.viewBooking();
+                             List<BookingDTO> allBookingDTO = new ArrayList<>();
+                             for (Booking booking : allBookings) {
 
-			BookingDTO dto = bookingDTOConvertor.GetBookingDTO(booking);
-			allBookingDTO.add(dto);
+                                           BookingDTO dto = bookingDTOConvertor.GetBookingDTO(booking);
+                                           allBookingDTO.add(dto);
 
-		}
-		return new ResponseEntity<List<BookingDTO>>(allBookingDTO, HttpStatus.OK);
-	}
-	// EndPoint
-	// localhost:2020/booking/view
+                             }
+                             return new ResponseEntity<List<BookingDTO>>(allBookingDTO, HttpStatus.OK);
+              }
+              // EndPoint
+              // localhost:2020/booking/view
 
-	@DeleteMapping("/{bookingId}")
-	public void deleteBooking(@PathVariable int bookingId) {
+              @DeleteMapping("/{bookingId}")
+              public void deleteBooking(@PathVariable int bookingId) {
 
-		bookingService.deleteBooking(bookingId);
-	}
-	// EndPoint
-	// localhost:2020/booking/delete/
+                             bookingService.deleteBooking(bookingId);
+              }
+              // EndPoint
+              // localhost:2020/booking/delete/
 }
+
