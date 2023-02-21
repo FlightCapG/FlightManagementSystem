@@ -1,0 +1,17 @@
+<input type="text" #carrierName>
+<button (click)="getFlight(carrierName.value)">Flight Details</button>
+
+<div *ngFor="let f of allFlight">
+    <table>
+        <tr>
+            <td>{{f.flightId}}</td>
+            <td>{{f.carrierName}}</td>
+            <td>{{f.sourceAirport}}</td>
+            <td>{{f.destinationAirport}}</td>
+            <td>{{f.duration}}</td>
+            
+        </tr>
+    </table>
+</div>
+
+

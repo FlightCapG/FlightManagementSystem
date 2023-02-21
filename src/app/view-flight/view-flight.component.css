@@ -1,0 +1,9 @@
+.Watchlist{
+
+    border:black 3px solid;
+    color:rgb(229, 255, 0);
+    font-size: larger;
+    background-color: rgb(186, 3, 3);
+    width: 80px;
+    height: 40px;
+}

@@ -1,0 +1,107 @@
+<h1 style="text-align:center ;"><b>Add Flight</b></h1>
+
+<div style="width:80%;height:50%;margin-bottom:50%;">
+    <div class="form">
+
+    <form (ngSubmit)="doFormSubmit()" #courseForm="ngForm">
+
+        <div class="form-group">
+
+            <label>Enter Flight Id</label>
+            <input type="number" [(ngModel)]="f.flightId" class="form-control" id="fid" name="fid" #flightId="ngModel"
+                required pattern="[0-9][0-9][0-9]">
+            <div *ngIf="flightId.invalid">
+                <span style="color: red;" *ngIf="flightId.errors?.['required']">
+
+                    Flight Id is required Field
+                </span>
+                <span style="color: red;" *ngIf="flightId.errors?.['pattern']">
+                    Flight Id is not valid
+                </span>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="mr-sm-2">Carrier Name</label>
+            <select [(ngModel)]="f.carrierName" class="form-control form-control-lg" id="fCarrierName"
+                name="fCarrierName">
+                <option selected>Choose...</option>
+                <option value="Empire">Empire</option>
+                <option value="Emirates">Emirates</option>
+                <option value="Horizon">Horizon</option>
+                <option value="Indigo">Indigo</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label>Source Airport</label>
+            <input type="text" #sourceAirport="ngModel" pattern="[a-zA-Z]+" [(ngModel)]="f.sourceAirport"
+                class="form-control" id="fSourceAirport" name="fSourceAirport" placeholder="exp {like Pune, Mumbai }"
+                required>
+
+
+            <div *ngIf="sourceAirport.invalid">
+                <span style="color: red;" *ngIf="sourceAirport.errors?.['required']">
+
+                    Carrier Name is required Field
+                </span>
+                <span style="color: red;" *ngIf="sourceAirport.errors?.['pattern']">
+                    Carrier Name is not valid
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Destination Airport</label>
+            <input type="text" #destinationAirport="ngModel" pattern="[a-zA-Z]+" [(ngModel)]="f.destinationAirport"
+                class="form-control" id="fDestinationAirport" name="fDestinationAirport"
+                placeholder="exp {like Pune, Mumbai }" required>
+            <div *ngIf="destinationAirport.invalid">
+                <span style="color: red;" *ngIf="destinationAirport.errors?.['required']">
+
+                    Carrier Name is required Field
+                </span>
+                <span style="color: red;" *ngIf="destinationAirport.errors?.['pattern']">
+                    Carrier Name is not valid
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Duration</label>
+            <input type="text" [(ngModel)]="f.duration" class="form-control" id="fduration" name="fduration"
+                placeholder="In Hours">
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="f.price" class="form-control" id="fprice" name="fprice"
+                placeholder="In USD $">
+        </div>
+        <div class="form-group">
+            <label>Discount</label>
+            <input type="number" [(ngModel)]="f.discount" class="form-control" id="fdiscount" name="fdiscount"
+                placeholder="In %">
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <input [(ngModel)]="f.imageName" type="text" class="form-control" id="image" name="image" placeholder="with extension exp *.JPG">
+               
+        </div>
+
+        <div class="form-group">
+            <label>About Flight</label>
+            <textarea [(ngModel)]="f.about" class="form-control" id="aboutFlight" name="aboutFlight"
+                rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="courseForm.form.invalid">Submit</button>
+    </form>
+
+</div>
+</div>
+
