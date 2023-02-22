@@ -1,16 +1,20 @@
-<input type="text" #arrivalTime>
-<button (click)="getFlightSchedule(arrivalTime.value)">Schedule</button> 
-<!-- <button (click)="getFlightSchedule(arrivalTime.value)">ArrivalTime</button>  -->
-
-<div *ngFor="let b of allFlightSchedule">
-    <table>
-        <tr>
-            <td>{{b.scheduleId}}</td>
-            <td>{{b.arrivalTime}}</td>
-            <td>{{b.departureTime}}</td>
-            <td>{{b.seat}}</td>
+<p>inside view</p>>
+<div>
+    <input type="text" #arrivalTime>
+    <button (click)="getFlightSchedule(arrivalTime.value)">Schedule</button> 
+    <!-- <button (click)="getFlightSchedule(arrivalTime.value)">ArrivalTime</button>  -->
     
-            
-        </tr>
-    </table>
-</div>
+    <div *ngFor="let f of allFlightSchedule">
+        <table>
+            <tr>
+                <td>{{f.scheduleId}}</td>
+                <td>{{f.arrivalTime}}</td>
+                <td>{{f.departureTime}}</td>
+                <td>{{f.seat}}</td>
+        
+                
+            </tr>
+        </table>
+    </div>
+    
+    </div>

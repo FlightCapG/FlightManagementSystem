@@ -7,10 +7,10 @@ import { Flightscheduledto } from './flightscheduledto';
 @Injectable({
   providedIn: 'root'
 })
-export class FlightOperationsService {
+export class ScheduleOperationService {
 
   baseURL: string='http://localhost:9090';
-  ScheduleByArrivaltimeEndPoint: string=this.baseURL+'\FlightSchedule\cn';
+  ScheduleByArrivaltimeEndPoint: string=this.baseURL+'\schedule\arrivalTime';
 
   FlightScheduleArr:Flightschedule[]=[];
 
@@ -25,12 +25,23 @@ export class FlightOperationsService {
     return this.http.get<Flightscheduledto[]>('${this.ScheduleByArrivaltimeEndPoint}');
   }
   
-  FlightSchedule(flightscheduleFromUser: Flightschedule)
+  // flightSchedule(flightSchedule:Flightschedule):Observable<Flightscheduledto[]>{
+  //   console.log("inside method 1" +this.FlightScheduleEndPoint);
+  //   this.FlightScheduleEndPoint= this.FlightScheduleEndPoint+'/'+flightSchedule;
+  //   console.log("after getting review 2"+ this.FlightScheduleEndPoint);
+
+  //   return this.http.get<Flightscheduledto[]>('${this.FlightScheduleEndPoint}');
+  // }
+  
+  submit(scheduleFromUser:Flightschedule)
   {
-    this.FlightScheduleArr.push(flightscheduleFromUser);
-    console.log("Inside Flight Schedule Service: Flight Schedule Added"+ flightscheduleFromUser.arrivalTime);
-    console.log("total no of flight schedule are:- "+this.FlightScheduleArr.length);
+    
+    this.FlightScheduleArr.push(scheduleFromUser); 
+    console.log("Inside FlightSchedule Service : Schedule Added "+scheduleFromUser.scheduleId);
+    console.log(" Total FlightSchedule Are :- "+this.getFlightScheduleArr.length);
+    
   }
+
   getFlightScheduleArr():Flightschedule[]
   {
     return this.FlightScheduleArr;

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Flightschedule } from '../flightschedule';
 import { Flightscheduledto } from '../flightscheduledto';
-import { FlightOperationsService } from '../schedule-operation.service';
+import { ScheduleOperationService } from '../schedule-operation.service';
+
 
 @Component({
   selector: 'app-view-schedule-flight',
@@ -9,26 +10,24 @@ import { FlightOperationsService } from '../schedule-operation.service';
   styleUrls: ['./view-schedule-flight.component.css']
 })
 export class ViewScheduleFlightComponent {
-  FlightSchedule(flightscheduleFromUser: Flightschedule) {
-    throw new Error('Method not implemented.');
-  }
-  // [x: string]: any;
-  allFlightSchedule: Flightscheduledto[]=[];
+  [x: string]: any;
+  
+  allFlightSchedule:Flightscheduledto[]=[];
 
-
-       
-  constructor(private Scheduleoperation: FlightOperationsService )
+  constructor(private Scheduleoperation: ScheduleOperationService)
   {
 
   }
+
   getFlightSchedule(arrivalTime:string){
     this.Scheduleoperation.getScheduleByArrivaltime(arrivalTime).subscribe(
       data=>{
         console.log("data :- "+data);
         
-        this.allFlightSchedule = data;
-      },err=>{
-        console.log("error from spring ",err);
+         this.allFlightSchedule = data;
+      },
+       err=>{
+         console.log("error from spring ",err);
   
       } 
     );

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Flightschedule } from '../flightschedule';
-import { FlightOperationsService } from '../schedule-operation.service';
+
 import { ViewScheduleFlightComponent } from '../view-schedule-flight/view-schedule-flight.component';
 
 @Component({
@@ -9,26 +9,27 @@ import { ViewScheduleFlightComponent } from '../view-schedule-flight/view-schedu
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent {
-  ___FlightSchedule: ViewScheduleFlightComponent;
 
-  f:Flightschedule= new Flightschedule('','','','');
+  __FlightSchedule:ViewScheduleFlightComponent;
+  f:Flightschedule=new Flightschedule('','','','');
 
   constructor(FlightSchedule:ViewScheduleFlightComponent)
   {
-    this.___FlightSchedule=FlightSchedule;
+    this.__FlightSchedule = FlightSchedule;
   }
+
   doFormSubmit()
   {
     console.log("form submit button clicked")
-    console.log(this.f);
-    this.___FlightSchedule['FlightSchedule'](this.f);
+    console.log(this.__FlightSchedule);
   }
+
   readFlightSchedule(scheduleId:string,arrivalTime:string,departureTime:string,seat:string)
   {
-    console.log(arrivalTime+" "+departureTime);
-    let flightscheduleFromUser:Flightschedule=new Flightschedule(scheduleId,arrivalTime,departureTime,seat);
-    this.___FlightSchedule['FlightSchedule'](flightscheduleFromUser)
+      console.log(scheduleId+" "+arrivalTime+" "+departureTime+" "+seat+" ");
+      let scheduleFromUser:Flightschedule = new Flightschedule(scheduleId,arrivalTime,departureTime,seat);
+      this.__FlightSchedule[scheduleId].submit()
   }
-  
 
 }
+

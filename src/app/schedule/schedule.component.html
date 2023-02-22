@@ -1,6 +1,6 @@
 <h1 style="background-color:blanchedalmond ;margin-left:7%;width:40%  ; ">Schedule</h1>
 <table>
-    <div class="FlightSchedule">
+    <div class="Flightschedule">
         <form (ngSubmit)="doFormSubmit()" #scheduleForm="ngForm">
             <table> 
                 <tr>
@@ -42,9 +42,12 @@
                     </div>
                 </tr>
                 <br><br>
-            
+                <!-- <td> <input type="reset" value="Clear All"></td>
+                <td> <input type="button"
+                    (click)=" readFlightSchedule(scheduleId.value,arrivalTime.value,departureTime.value,seat.value)"
+                    value="Add FlightSchedule" /> </td> -->
 
-                    <button type="submit" class="btn btn-primary mb-2" [disabled]="scheduleForm.form.invalid">Submit</button>
+             <button type="submit" class="btn btn-primary mb-2" [disabled]="scheduleForm.form.invalid">Submit</button> 
  
         
     
