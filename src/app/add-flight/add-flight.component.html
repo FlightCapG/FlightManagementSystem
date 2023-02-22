@@ -1,0 +1,153 @@
+<h1 style="background-color: bisque;margin-right: 77%;">Add Flight</h1>
+<table>
+    <div class="addFlight">
+
+        <form (ngSubmit)="doFormSubmit()" #courseForm="ngForm">
+            <table>
+                <tr>
+                    <div class="form-group">
+                        <td><label>Enter Flight Id</label></td>
+                        <td><input type="number" [(ngModel)]="f.flightId" class="form-control" id="fid" name="fid"
+                                #flightId="ngModel" required pattern="[0-9][0-9][0-9]">
+                            <div *ngIf="flightId.invalid">
+                                <span style="color: red;" *ngIf="flightId.errors?.['required']">
+
+                                    Flight Id is required Field
+                                </span>
+                                <span style="color: red;" *ngIf="flightId.errors?.['pattern']">
+                                    Flight Id is not valid
+                                </span>
+                            </div>
+                        </td>
+                    </div>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <div class="form-group">
+
+                        <td><label class="mr-sm-2">Carrier Name</label></td>
+                        <td><select [(ngModel)]="f.carrierName" class="form-control form-control-lg" id="fCarrierName"
+                                name="fCarrierName">
+                                <option selected>Choose...</option>
+                                <option value="Empire">Empire</option>
+                                <option value="Emirates">Emirates</option>
+                                <option value="Horizon">Horizon</option>
+                                <option value="Indigo">Indigo</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Source Airport</label>
+                        <input type="text" #sourceAirport="ngModel" pattern="[a-zA-Z]+" [(ngModel)]="f.sourceAirport"
+                            class="form-control" id="fSourceAirport" name="fSourceAirport"
+                            placeholder="exp {like Pune, Mumbai }" required>
+
+                        <div *ngIf="sourceAirport.invalid">
+                            <span style="color: red;" *ngIf="sourceAirport.errors?.['required']">
+
+                                Source Name is required Field
+                            </span>
+                            <span style="color: red;" *ngIf="sourceAirport.errors?.['pattern']">
+                                Source Name is not valid
+                            </span>
+                        </div>
+                    </div>
+                </tr>
+            </table>
+            <table>
+                <tr>
+
+                    <div class="form-group">
+                        <td><label>Destination Airport</label></td>
+                        <td><input type="text" #destinationAirport="ngModel" pattern="[a-zA-Z]+"
+                                [(ngModel)]="f.destinationAirport" class="form-control" id="fDestinationAirport"
+                                name="fDestinationAirport" placeholder="exp {like Pune, Mumbai }" required>
+                            <div *ngIf="destinationAirport.invalid">
+                                <span style="color: red;" *ngIf="destinationAirport.errors?.['required']">
+
+                                    Destination Name is required Field
+                                </span>
+                                <span style="color: red;" *ngIf="destinationAirport.errors?.['pattern']">
+                                    Destination Name is not valid
+                                </span>
+                            </div>
+                        </td>
+                    </div>
+                </tr>
+            </table>
+            <table>
+                <tr>
+
+                    <div class="form-group">
+                        <td> <label>Duration</label></td>
+                        <td> <input type="number" ngModel maxlength="25" [(ngModel)]="f.duration" class="form-control"
+                                id="fduration" name="fduration" #duration="ngModel" placeholder="In Hours" required>
+                            <div *ngIf="duration.invalid">
+                                <span style="color:red;" *ngIf="duration.errors?.['required']">
+                                    Duration is required
+                                </span>
+                                <span style="color: red;" *ngIf="duration.errors?.['pattern']">
+                                    Duration is not valid
+                                </span>
+                            </div>
+                        </td>
+                    </div>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <div class="form-group">
+                        <td> <label>price</label></td>
+                        <td> <input type="number" [(ngModel)]="f.price" class="form-control" id="fprice" name="fprice"
+                                #price="ngModel" placeholder="In USD $"
+                                pattern="^[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$" required>
+                            <div *ngIf="price.invalid">
+                                <span style="color: red;" *ngIf="price.errors?.['required']">
+                                    Price is required
+                                </span>
+                                <span style="color: red;" *ngIf="price.errors?.['pattern']">
+                                    Price is not valid
+                                </span>
+                            </div>
+                        </td>
+                    </div>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <div class="form-group">
+                        <td><label>Discount</label></td>
+                        <td><input type="number" [(ngModel)]="f.discount" class="form-control" id="fdiscount"
+                                name="fdiscount" placeholder="In %">
+                    </div>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <div class="form-group">
+                        <td> <label>Image</label></td>
+                        <input [(ngModel)]="f.imageName" type="text" class="form-control" id="image" name="image"
+                            placeholder="with extension exp *.JPG">
+                    </div>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+            <div class="form-group">
+                <td><label>About Flight</label></td>
+                <textarea [(ngModel)]="f.about" class="form-control" id="aboutFlight" name="aboutFlight"
+                    rows="3"></textarea>
+            </div>
+        </tr>
+    </table>
+
+ <button style="border: 1px; background-color: rgb(0, 0, 0);color: beige; margin-left: 80%; margin-bottom: 5%;"
+  type="submit" class="btn btn-primary mb-2" [disabled]="courseForm.form.invalid">Submit</button>
+        </form>
+    </div>
+</table>
+            

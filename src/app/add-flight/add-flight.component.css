@@ -1,0 +1,9 @@
+.addFlight{
+    border: rgb(5, 1, 19) 3px solid;
+    color: rgb(0, 0, 0);
+    font-size: medium;
+    background-color:bisque;
+    width: 100%;
+    height: 100%;
+    border-radius: 1%;
+}

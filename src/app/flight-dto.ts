@@ -4,13 +4,15 @@ export class FlightDTO {
     sourceAirport:string;
     destinationAirport:string;
     duration:number;
+    price:number;
 
     constructor(
         flightId:number,
         carrierName:string,
         sourceAirport:string,
         destinationAirport:string,
-        duration:number
+        duration:number,
+        price:number
     )
     {
         this.flightId=flightId;
@@ -18,5 +20,6 @@ export class FlightDTO {
         this.sourceAirport=sourceAirport;
         this.destinationAirport=destinationAirport;
         this.duration=duration;
+        this.price=price;
     }  
 }

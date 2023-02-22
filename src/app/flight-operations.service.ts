@@ -9,45 +9,79 @@ import { FlightDTO } from './flight-dto';
 })
 export class FlightOperationsService {
 
-  baseURL:string = 'http://localhost:9090';
-  flightByCarrierNameEndPoint:string=this.baseURL+'/flight/cn';
+  baseURL: string='http://localhost:9090';
 
-  flightArr:Flight[] = [];
+  flightByIdEndPoint: string = this.baseURL+'/flight/id';
+  flightByCarrierNameEndPoint: string = this.baseURL+'/flight/cn';
+  flightBySourceAirportEndPoint: string = this.baseURL+'/flight/sa';
+  flightByDestinationAirportEndPoint: string = this.baseURL+'/flight/da';
+  allFlightEndPoint: string = this.baseURL +'/flight/list';
 
-  constructor(private http:HttpClient) { 
+  // localhost:9090/flight/id
+  // localhost:9090/flight/list
+  // localhost:9090/flight/cn
+  // localhost:9090/flight/sa
+  // localhost:9090/flight/da
 
-    console.log("Inside Constructor "+this.flightByCarrierNameEndPoint);
+  flightArr: Flight[] = [];
+
+  constructor(private http: HttpClient) {
+    console.log("Inside Constructor " + this.flightByIdEndPoint);
+    console.log("Inside Constructor " + this.flightByCarrierNameEndPoint);
+    console.log("Inside Constructor " + this.flightBySourceAirportEndPoint);
+    console.log("Inside Constructor " + this.flightByDestinationAirportEndPoint);
+    
+
+
+  }
+  getFlightById(flightId: number): Observable<FlightDTO[]> {
+    console.log("Inside Method 1 " + this.flightByIdEndPoint);
+    this.flightByIdEndPoint = this.flightByIdEndPoint + '/' + flightId;
+    console.log("After adding id 2 " + this.flightByIdEndPoint);
+
+    return this.http.get<FlightDTO[]>(`${this.flightByIdEndPoint}`);
 
   }
 
-  getFlightByCarrierName(carrierName:string):Observable<FlightDTO[]>{
-    console.log("Inside Method 1 "+this.flightByCarrierNameEndPoint);
-    this.flightByCarrierNameEndPoint=this.flightByCarrierNameEndPoint+'/'+carrierName;
-    console.log("After adding name 2 "+this.flightByCarrierNameEndPoint);
+  getFlightByCarrierName(carrierName: string): Observable<FlightDTO[]> {
+    console.log("Inside Method 1 " + this.flightByCarrierNameEndPoint);
+    this.flightByCarrierNameEndPoint = this.flightByCarrierNameEndPoint + '/' + carrierName;
+    console.log("After adding carrier 2 " + this.flightByCarrierNameEndPoint);
 
     return this.http.get<FlightDTO[]>(`${this.flightByCarrierNameEndPoint}`);
   }
 
 
+  getFlightBySourceAirport(sourceAirport: string): Observable<FlightDTO[]> {
+    console.log("Inside Method 1 " + this.flightBySourceAirportEndPoint);
+    this.flightBySourceAirportEndPoint = this.flightBySourceAirportEndPoint + '/' + sourceAirport;
+    console.log("After adding source 2 " + this.flightBySourceAirportEndPoint);
 
-
-
-  addFlight(flightFromUser:Flight)
-  {
-    
-    this.flightArr.push(flightFromUser); 
-    console.log("Inside Flight Service : Flight Added "+flightFromUser.carrierName);
-    console.log(" Total Flight Are :- "+this.flightArr.length);
-    
+    return this.http.get<FlightDTO[]>(`${this.flightBySourceAirportEndPoint}`);
   }
-  
-  getFlightArr():Flight[]
+
+  getFlightByDestinationAirport(destinationAirport: string): Observable<FlightDTO[]> {
+    console.log("Inside Method 1 " + this.flightByDestinationAirportEndPoint);
+    this.flightByDestinationAirportEndPoint = this.flightByDestinationAirportEndPoint + '/' + destinationAirport;
+    console.log("After adding destination 2 " + this.flightByDestinationAirportEndPoint);
+
+    return this.http.get<FlightDTO[]>(`${this.flightByDestinationAirportEndPoint}`);
+  }
+
+
+  Submit(flightFromUser:Flight)
   {
+    this.flightArr.push(flightFromUser);
+    console.log("Inside Flight Service : Flight Added "+flightFromUser.carrierName);
+    console.log("Total Flight Are :"+this.flightArr.length);
+  }
+  getFlightArr(): Flight[] {
     return this.flightArr;
   }
 
-  
+  getAllFlightFromSpring():Observable<FlightDTO[]>{
+    console.log("inside service :"+this.allFlightEndPoint);
+    return this.http.get<FlightDTO[]>(`${this.allFlightEndPoint}`);
+  }
 
 }
-
-
