@@ -1,0 +1,57 @@
+<h1 style="background-color:blanchedalmond ;margin-left:7%;width:40%  ; ">Schedule</h1>
+<table>
+    <div class="FlightSchedule">
+        <form (ngSubmit)="doFormSubmit()" #scheduleForm="ngForm">
+            <table> 
+                <tr>
+                    <div class="form-group">
+                        <label>Enter Schedule Id</label>
+                        <input type="number" [(ngModel)]="f.scheduleId" class="form-control" id="fid" name="fid" #scheduleId="ngModel"
+                            required pattern="[0-9][0-9][0-9]">
+                        <div *ngIf="scheduleId.invalid">
+                            <span style="color: red;" *ngIf="scheduleId.errors?.['required']">
+            
+                                Schedule Id is required Field
+                            </span>
+                            <span style="color: red;" *ngIf="scheduleId.errors?.['pattern']">
+                                Schedule Id is not valid
+                            </span>
+                        </div>
+                    </div>
+                </tr>
+                <br><br>
+                <tr>
+                    <div class="form-group">
+                        <label>arrivalTime</label>
+                        <input type="text" [(ngModel)]="f.arrivalTime" class="form-control" id="farrivalTime" name="farrivalTime"
+                            placeholder="In Hours">
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <label>departureTime</label>
+                        <input type="text" [(ngModel)]="f.departureTime" class="form-control" id="fdepartureTime" name="fdepartureTime"
+                            placeholder="In Hours">
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <label>seat</label>
+                        <input type="text" [(ngModel)]="f.seat" class="form-control" id="fseat" name="farrivalTime"
+                            placeholder="number">
+                    </div>
+                </tr>
+                <br><br>
+            
+
+                    <button type="submit" class="btn btn-primary mb-2" [disabled]="scheduleForm.form.invalid">Submit</button>
+ 
+        
+    
+    
+    </table> 
+</form>           
+    
+
+
+
